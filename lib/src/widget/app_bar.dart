@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:neumorphic_ui/neumorphic_ui.dart';
-import 'package:neumorphic_ui/src/widget/back_button.dart';
 
 class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   static const toolbarHeight = kToolbarHeight + 16 * 2;
@@ -102,9 +99,9 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   NeumorphicAppBarState createState() => NeumorphicAppBarState();
 
-  bool _getEffectiveCenterTitle(ThemeData theme, NeumorphicThemeData nTheme) {
-    if (centerTitle != null || nTheme.appBarTheme.centerTitle != null)
-      return centerTitle ?? nTheme.appBarTheme.centerTitle!;
+  bool _getEffectiveCenterTitle(ThemeData theme, NeumorphicThemeData? nTheme) {
+    if (centerTitle != null || nTheme?.appBarTheme.centerTitle != null)
+      return centerTitle ?? nTheme?.appBarTheme.centerTitle ?? true;
     switch (theme.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
@@ -235,7 +232,7 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
                 middle: title,
                 trailing: actions,
                 centerMiddle:
-                    widget._getEffectiveCenterTitle(theme, nTheme!.current!),
+                    widget._getEffectiveCenterTitle(theme, nTheme?.current),
                 middleSpacing: widget.titleSpacing,
               ),
             ),
